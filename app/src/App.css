@@ -57,13 +57,17 @@ body {
 
 input.input-field-filter {
   height: 40px;
-  width: 340px;
+  width: 326px;
   margin-right: auto;
   margin-left: auto;
   padding: 0px;
   border: 0px;
   display: block;
   border-radius: 12px;
+  /*Text Styles*/
+  padding-left: 14px;
+  font-size: 16px;
+  font-style: italic;
 }
 
 #input-field {

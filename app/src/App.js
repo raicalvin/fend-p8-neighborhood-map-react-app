@@ -14,7 +14,12 @@ class App extends Component {
               id="input-field"
               className="flex-container flex-container-center"
             >
-              <input type="text" name="fname" className="input-field-filter" />
+              <input
+                type="text"
+                name="fname"
+                placeholder="Filter results..."
+                className="input-field-filter"
+              />
             </div>
             <div id="sidebar-list">
               <ul>
