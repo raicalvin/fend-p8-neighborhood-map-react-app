@@ -10,7 +10,10 @@ class App extends Component {
         </div>
         <div id="content">
           <div id="sidebar">
-            <div id="input-field">
+            <div
+              id="input-field"
+              className="flex-container flex-container-center"
+            >
               <input type="text" name="fname" className="input-field-filter" />
             </div>
             <div id="sidebar-list">
