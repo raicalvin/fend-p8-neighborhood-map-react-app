@@ -8,7 +8,7 @@ class App extends Component {
         <div id="header" className="flex-container flex-container-center">
           <span>KYOTO EXPLORE</span>
         </div>
-        <div id="content">
+        <div id="content" className="flex-container">
           <div id="sidebar">
             <div
               id="input-field"
