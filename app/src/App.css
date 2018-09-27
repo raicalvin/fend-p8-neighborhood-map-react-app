@@ -1,7 +1,9 @@
+/* ========== Body/General ========== */
 body {
   background-color: #1e1e1e;
 }
 
+/* ========== App Container ========== */
 #app {
   height: 100%;
   margin: 0;
@@ -10,6 +12,7 @@ body {
   margin-bottom: 20px; /*To cotain FOOTER in fixed position*/
 }
 
+/* ========== Flex Containers ========== */
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -28,6 +31,7 @@ body {
   font-weight: bold;
 }
 
+/* ========== Header ========== */
 #header {
   background-color: #c60c0c;
   height: 60px;
@@ -43,9 +47,7 @@ body {
   font-weight: bold;
 }
 
-#content {
-}
-
+/* ========== Sidebar ========== */
 #sidebar {
   position: relative;
   z-index: 2;
@@ -54,7 +56,13 @@ body {
   top: 0px;
   padding-bottom: 10px;
 }
-
+#input-field {
+  position: fixed;
+  height: 100px;
+  width: 360px;
+  z-index: 6;
+  background-color: #1e1e1e;
+}
 input.input-field-filter {
   height: 40px;
   width: 326px;
@@ -70,26 +78,27 @@ input.input-field-filter {
   font-style: italic;
 }
 
-#input-field {
-  position: fixed;
-  height: 100px;
-  width: 360px;
-  z-index: 6;
-
-  background-color: #1e1e1e;
+/* ========== Sidebar List ========== */
+#sidebar-list {
+  padding-top: 120px;
 }
-
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   z-index: 5;
 }
-
-#sidebar-list {
-  padding-top: 120px;
+.list-item {
+  width: 340px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  background-color: rgb(228, 228, 228);
+  border-radius: 12px;
 }
 
+/* ========== Map ========== */
 #map {
   bottom: 0px;
   top: 60px;
@@ -101,16 +110,7 @@ ul {
   background: url("http://placekitten.com/g/200/300");
 }
 
-.list-item {
-  width: 340px;
-  height: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-  background-color: rgb(228, 228, 228);
-  border-radius: 12px;
-}
-
+/* ========== Footer ========== */
 #footer {
   position: fixed;
   bottom: 0;
@@ -123,3 +123,5 @@ ul {
   color: white;
   font-size: 12px;
 }
+
+/* ========== Media Queries ===== */
