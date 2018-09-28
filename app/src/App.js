@@ -5,9 +5,7 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-        <div id="header" className="flex-container flex-container-center">
-          <span>KYOTO EXPLORE</span>
-        </div>
+        <Header />
         <div id="content" className="flex-container">
           <div id="sidebar">
             <div
@@ -106,3 +104,33 @@ class App extends Component {
 }
 
 export default App;
+
+/* ========== Header Component ========== */
+class Header extends Component {
+  render() {
+    return (
+      <div id="header" className="flex-container flex-container-center">
+        <span>KYOTO EXPLORE</span>
+      </div>
+    );
+  }
+}
+
+/* ========== Footer Component ========== */
+/* ========== Content Component ========== */
+
+// TODO:
+/*
+  FRIDAY
+  1. Branch off into React branch
+  2. Refactor code to use React components (maybe seperate files)
+  3. Implement Google Maps map into React component (see article link)
+
+  MONDAY
+  4. Application Functionality (Maps API)
+  5. Additional Functionality (3rd Party API)
+
+  TUESDAY
+  6. Accessibility & Offline Usage & Documentation & Submit
+
+*/
