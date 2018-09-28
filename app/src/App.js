@@ -95,9 +95,7 @@ class App extends Component {
           </div>
           <div id="map" />
         </div>
-        <div id="footer" className="flex-container flex-container-center">
-          <span>Made with LOVE. And React. By Calvin.</span>
-        </div>
+        <Footer />
       </div>
     );
   }
@@ -116,8 +114,18 @@ class Header extends Component {
   }
 }
 
-/* ========== Footer Component ========== */
 /* ========== Content Component ========== */
+
+/* ========== Footer Component ========== */
+class Footer extends Component {
+  render() {
+    return (
+      <div id="footer" className="flex-container flex-container-center">
+        <span>Made with LOVE. And React. By Calvin.</span>
+      </div>
+    );
+  }
+}
 
 // TODO:
 /*
