@@ -2,6 +2,24 @@ import React, { Component } from "react";
 import "./App.css";
 
 class App extends Component {
+  componentDidMount() {
+    this.renderMap();
+  }
+
+  initMap() {
+    let map = new window.google.maps.Map(document.getElementById("map"), {
+      center: { lat: -34.397, lng: 150.644 },
+      zoom: 8
+    });
+  }
+
+  renderMap() {
+    loadScript(
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyAlIenynkE5AszSbeQJF_9qS2X_xGIi2zQ&callback=initMap"
+    );
+    window.initMap = this.initMap;
+  }
+
   render() {
     return (
       <div id="app">
@@ -93,12 +111,25 @@ class App extends Component {
               </ul>
             </div>
           </div>
-          <div id="map" />
+          <div className="main-map">
+            <div id="map" />
+          </div>
         </div>
         <Footer />
       </div>
     );
   }
+}
+
+function loadScript(url) {
+  // We are just creating the script element and giving it the url
+  // and also adding the async and defer attributes to the element
+  let ref = window.document.getElementsByTagName("script")[0];
+  let script = window.document.createElement("script"); // create the script element
+  script.src = url;
+  script.async = true;
+  script.defer = true;
+  ref.parentNode.insertBefore(script, ref);
 }
 
 export default App;
@@ -130,8 +161,8 @@ class Footer extends Component {
 // TODO:
 /*
   FRIDAY
-  1. Branch off into React branch
-  2. Refactor code to use React components (maybe seperate files)
+  1. Branch off into React branch...OK
+  2. Refactor code to use React components (maybe seperate files)...WORKING
   3. Implement Google Maps map into React component (see article link)
 
   MONDAY
