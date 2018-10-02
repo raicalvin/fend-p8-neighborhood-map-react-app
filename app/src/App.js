@@ -3,6 +3,61 @@ import "./App.css";
 import Header from "./comps/HeaderComponent.js";
 import Footer from "./comps/FooterComponent.js";
 import Content from "./comps/ContentComponent";
+/* Initial array of locations with their latlongs */
+var places = [
+  {
+    title: "Kurama-Dera Temple",
+    location: { lat: 35.121843, lng: 135.762905 }
+  },
+  {
+    title: "Fushimi Inari-taisha",
+    location: { lat: 34.967143, lng: 135.772673 }
+  },
+  {
+    title: "Arashiyama",
+    location: { lat: 35.009452, lng: 135.666775 }
+  },
+  {
+    title: "Gion",
+    location: { lat: 35.003764, lng: 135.77718 }
+  },
+  {
+    title: "Nijo Castle",
+    location: { lat: 35.014072, lng: 135.747578 }
+  },
+  {
+    title: "Kifune Shrine",
+    location: { lat: 35.121852, lng: 135.762899 }
+  },
+  {
+    title: "Kyoto Imperial Palace",
+    location: { lat: 35.025413, lng: 135.762126 }
+  },
+  {
+    title: "Nishiki Market",
+    location: { lat: 35.005007, lng: 135.764899 }
+  },
+  {
+    title: "Tō-ji",
+    location: { lat: 34.981118, lng: 135.747596 }
+  },
+  {
+    title: "Kyoto Tower",
+    location: { lat: 34.987573, lng: 135.759333 }
+  },
+  {
+    title: "Philosopher's Walk (Tetsugaku-no-michi)",
+    location: { lat: 35.021484, lng: 135.794207 }
+  },
+  {
+    title: "Maruyama Park",
+    location: { lat: 35.003882, lng: 135.780917 }
+  },
+  {
+    title: "Kyoto International Manga Museum",
+    location: { lat: 35.01194, lng: 135.759274 }
+  }
+];
 
 class App extends Component {
   componentDidMount() {
@@ -19,8 +74,14 @@ class App extends Component {
 
   initMap() {
     let map = new window.google.maps.Map(document.getElementById("map"), {
-      center: { lat: -34.397, lng: 150.644 },
-      zoom: 8
+      center: { lat: 35.02107, lng: 135.75385 },
+      zoom: 10
+    });
+    var kyoto = { lat: 35.02107, lng: 135.75385 };
+    var marker = new window.google.maps.Marker({
+      position: kyoto,
+      map: map,
+      title: "Tokyo Marker!"
     });
   }
 

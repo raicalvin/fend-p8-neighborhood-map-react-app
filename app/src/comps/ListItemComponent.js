@@ -5,7 +5,7 @@ class ListItem extends Component {
     return (
       <li>
         <div className="list-item flex-container-list-item">
-          <span className="list-item-span">Kyoto Palace</span>
+          <span className="list-item-span">Kurama-Dera Temple</span>
         </div>
       </li>
     );
