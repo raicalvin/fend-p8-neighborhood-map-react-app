@@ -104,7 +104,7 @@ class App extends Component {
     return (
       <div id="app">
         <Header />
-        <Content />
+        <Content places={this.state.places} />
         <Footer />
       </div>
     );
