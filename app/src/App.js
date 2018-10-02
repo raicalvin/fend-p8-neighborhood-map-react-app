@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import "./App.css";
+import Header from "./comps/HeaderComponent.js";
+import Footer from "./comps/FooterComponent.js";
+import Content from "./comps/ContentComponent";
 
 class App extends Component {
   componentDidMount() {
     this.renderMap();
+  }
+
+  renderMap() {
+    const apiKey = "AIzaSyAlIenynkE5AszSbeQJF_9qS2X_xGIi2zQ";
+    loadScript(
+      `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`
+    );
+    window.initMap = this.initMap;
   }
 
   initMap() {
@@ -13,108 +24,11 @@ class App extends Component {
     });
   }
 
-  renderMap() {
-    loadScript(
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyAlIenynkE5AszSbeQJF_9qS2X_xGIi2zQ&callback=initMap"
-    );
-    window.initMap = this.initMap;
-  }
-
   render() {
     return (
       <div id="app">
         <Header />
-        <div id="content" className="flex-container">
-          <div id="sidebar">
-            <div
-              id="input-field"
-              className="flex-container flex-container-center"
-            >
-              <input
-                type="text"
-                name="fname"
-                placeholder="Filter results..."
-                className="input-field-filter"
-              />
-            </div>
-            <div id="sidebar-list">
-              <ul>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Kyoto Palace</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Fushimi Inari-taisha</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Arashiyama</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Gion</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Nijo Castle</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Kifune Shrine</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">
-                      Kyoto Imperial Palace
-                    </span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Nishiki Market</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Tō-ji</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Kyoto Tower</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Philosopher's Walk</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">Maruyama Park</span>
-                  </div>
-                </li>
-                <li>
-                  <div className="list-item flex-container-list-item">
-                    <span className="list-item-span">
-                      Kyoto International Manga Museum
-                    </span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="main-map">
-            <div id="map" />
-          </div>
-        </div>
+        <Content />
         <Footer />
       </div>
     );
@@ -133,30 +47,6 @@ function loadScript(url) {
 }
 
 export default App;
-
-/* ========== Header Component ========== */
-class Header extends Component {
-  render() {
-    return (
-      <div id="header" className="flex-container flex-container-center">
-        <span>KYOTO EXPLORE</span>
-      </div>
-    );
-  }
-}
-
-/* ========== Content Component ========== */
-
-/* ========== Footer Component ========== */
-class Footer extends Component {
-  render() {
-    return (
-      <div id="footer" className="flex-container flex-container-center">
-        <span>Made with LOVE. And React. By Calvin.</span>
-      </div>
-    );
-  }
-}
 
 // TODO:
 /*
