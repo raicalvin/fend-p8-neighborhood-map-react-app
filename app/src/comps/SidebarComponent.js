@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Input from "./InputComponent";
 import ListItem from "./ListItemComponent";
+import escapeRegExp from "escape-string-regexp";
+import sortBy from "sort-by";
 
 class Sidebar extends Component {
   state = {
@@ -8,11 +10,20 @@ class Sidebar extends Component {
   };
 
   updateQuery = query => {
-    this.setState({ query: query.trim() });
+    this.setState({ query: query /*.trim()*/ });
     console.log("something changed");
   };
 
   render() {
+    let filteringResults;
+    if (this.state.query) {
+      const match = new RegExp(escapeRegExp(this.state.query), "i");
+      filteringResults = this.props.places.filter(place =>
+        match.test(place.title)
+      );
+    } else {
+      filteringResults = this.props.places;
+    }
     return (
       <div id="sidebar">
         <div id="input-field" className="flex-container flex-container-center">
@@ -27,7 +38,7 @@ class Sidebar extends Component {
         </div>
         <div id="sidebar-list">
           <ul>
-            {this.props.places.map(place => (
+            {filteringResults.map(place => (
               <li key={place.id}>
                 <button className="list-item flex-container-list-item">
                   <span className="list-item-span">{place.title}</span>
