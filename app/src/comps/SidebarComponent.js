@@ -11,9 +11,9 @@ class Sidebar extends Component {
           <ul>
             {this.props.places.map(place => (
               <li key={place.id}>
-                <div className="list-item flex-container-list-item">
+                <button className="list-item flex-container-list-item">
                   <span className="list-item-span">{place.title}</span>
-                </div>
+                </button>
               </li>
             ))}
           </ul>
