@@ -73,15 +73,16 @@ class App extends Component {
         id: "kim9474"
       }
     ],
-    markers: []
+    markers: [],
+    sights: []
   };
 
   componentDidMount() {
+    this.getFourquareData();
     this.renderMap();
   }
 
   renderMap() {
-    console.log(this.state);
     const apiKey = "AIzaSyAlIenynkE5AszSbeQJF_9qS2X_xGIi2zQ";
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`
@@ -89,12 +90,39 @@ class App extends Component {
     window.initMap = this.initMap;
   }
 
+  getFourquareData() {
+    let endpoint = "https://api.foursquare.com/v2/venues/explore?";
+    let url;
+    let params = {
+      query: "sights",
+      client_id: "OL1E1V3DZX4B43T1RTBROAY2SDZX12LT0LPXRDTBS0FY1WMF",
+      client_secret: "0FTEA0GR1EA42U5GZ250VWAASV0UDIP4T2A3LR53EDGW2PY4",
+      ll: "",
+      v: 20180323
+    };
+    this.setState({ sights: [] });
+    this.state.places.forEach(place => {
+      let lat = place.location.lat;
+      let lng = place.location.lng;
+      params.ll = lat + "," + lng;
+      url = endpoint + new URLSearchParams(params);
+      fetch(url).then(response => {
+        response.json().then(jsonResp => {
+          let nearbySights = jsonResp.response.groups[0].items;
+          this.setState(currentState => {
+            // push the nearbySights for single place to array
+            currentState.sights.push(nearbySights);
+          });
+        });
+      });
+    });
+  }
+
   initMap() {
     let map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 35.02107, lng: 135.75385 },
       zoom: 10
     });
-    console.log(this.state);
     var kyoto = { lat: 35.02107, lng: 135.75385 };
     var marker = new window.google.maps.Marker({
       position: kyoto,
@@ -104,6 +132,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div id="app">
         <Header />
