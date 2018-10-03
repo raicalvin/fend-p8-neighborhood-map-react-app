@@ -72,7 +72,8 @@ class App extends Component {
         location: { lat: 35.01194, lng: 135.759274 },
         id: "kim9474"
       }
-    ]
+    ],
+    markers: []
   };
 
   componentDidMount() {

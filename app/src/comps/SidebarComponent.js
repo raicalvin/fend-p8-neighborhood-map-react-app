@@ -6,15 +6,16 @@ import sortBy from "sort-by";
 
 class Sidebar extends Component {
   state = {
-    query: ""
+    query: "",
+    markers: []
   };
 
   updateQuery = query => {
     this.setState({ query: query /*.trim()*/ });
-    console.log("something changed");
   };
 
   render() {
+    /* === This section filters the results when user searches in the input field === */
     let filteringResults;
     if (this.state.query) {
       const match = new RegExp(escapeRegExp(this.state.query), "i");
@@ -24,6 +25,11 @@ class Sidebar extends Component {
     } else {
       filteringResults = this.props.places;
     }
+    filteringResults.sort(sortBy("title"));
+
+    // now for each place in the filteringResults array, create the markers and infowindows...
+
+    /* === returned UI from the render() method === */
     return (
       <div id="sidebar">
         <div id="input-field" className="flex-container flex-container-center">
