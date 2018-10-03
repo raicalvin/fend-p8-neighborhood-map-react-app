@@ -81,6 +81,7 @@ class App extends Component {
   }
 
   renderMap() {
+    console.log(this.state);
     const apiKey = "AIzaSyAlIenynkE5AszSbeQJF_9qS2X_xGIi2zQ";
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`
@@ -93,6 +94,7 @@ class App extends Component {
       center: { lat: 35.02107, lng: 135.75385 },
       zoom: 10
     });
+    console.log(this.state);
     var kyoto = { lat: 35.02107, lng: 135.75385 };
     var marker = new window.google.maps.Marker({
       position: kyoto,
