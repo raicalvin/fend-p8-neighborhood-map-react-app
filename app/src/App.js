@@ -79,7 +79,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getFourquareData();
-    this.renderMap();
+    //this.renderMap();
   }
 
   renderMap() {
@@ -93,13 +93,43 @@ class App extends Component {
   getFourquareData() {
     let endpoint = "https://api.foursquare.com/v2/venues/explore?";
     let url;
+    let urls = [];
     let params = {
       query: "sights",
-      client_id: "OL1E1V3DZX4B43T1RTBROAY2SDZX12LT0LPXRDTBS0FY1WMF",
-      client_secret: "0FTEA0GR1EA42U5GZ250VWAASV0UDIP4T2A3LR53EDGW2PY4",
+      client_id: "SK5EVPKEL2Q5CDBOQRTZ0EQWCV43YW2QJU3L3WQ0BLGMCLCI",
+      client_secret: "IBNJBM015XAHHQCYPLDBZVGCWJ5BQUXNQVWMBW4QDGJ0LU5I",
       ll: "",
       v: 20180323
     };
+
+    this.state.places.forEach(place => {
+      let lat = place.location.lat;
+      let lng = place.location.lng;
+      params.ll = lat + "," + lng;
+      url = endpoint + new URLSearchParams(params);
+      urls.push(url);
+    });
+
+    let allSights = [];
+
+    urls = urls.slice(0, 3); //just use three responses for now (delete this line later)
+
+    Promise.all(urls.map(url => fetch(url))).then(resolved => {
+      Promise.all(resolved.map(res => res.json())).then(r => {
+        r.forEach(sights => {
+          let s = sights.response.groups[0].items;
+          allSights.push(s);
+        });
+        this.setState(
+          {
+            sights: allSights
+          },
+          this.renderMap()
+        );
+      });
+    });
+
+    /* OLD CODE NOT WORKING WELL
     this.setState({ sights: [] });
     this.state.places.forEach(place => {
       let lat = place.location.lat;
@@ -107,15 +137,21 @@ class App extends Component {
       params.ll = lat + "," + lng;
       url = endpoint + new URLSearchParams(params);
       fetch(url).then(response => {
-        response.json().then(jsonResp => {
-          let nearbySights = jsonResp.response.groups[0].items;
-          this.setState(currentState => {
-            // push the nearbySights for single place to array
-            currentState.sights.push(nearbySights);
+        response
+          .json()
+          .then(jsonResp => {
+            let nearbySights = jsonResp.response.groups[0].items;
+            this.setState(currentState => {
+              // push the nearbySights for single place to array
+              currentState.sights.push(nearbySights);
+            });
+          })
+          .then(() => {
+            console.log("Hello", this.state);
           });
-        });
       });
     });
+    */
   }
 
   initMap() {
@@ -123,16 +159,17 @@ class App extends Component {
       center: { lat: 35.02107, lng: 135.75385 },
       zoom: 10
     });
-    var kyoto = { lat: 35.02107, lng: 135.75385 };
-    var marker = new window.google.maps.Marker({
-      position: kyoto,
-      map: map,
-      title: "Tokyo Marker!"
+    console.log(this.state.places);
+    this.state.places.map(place => {
+      var marker = new window.google.maps.Marker({
+        position: { lat: place.location.lat, lng: place.location.lng },
+        map: map,
+        title: place.title
+      });
     });
   }
 
   render() {
-    console.log(this.state);
     return (
       <div id="app">
         <Header />
