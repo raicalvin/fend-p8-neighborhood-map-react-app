@@ -87,7 +87,7 @@ class App extends Component {
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`
     );
-    window.initMap = this.initMap;
+    window.initMap = this.initMap.bind(this);
   }
 
   getFourquareData() {
@@ -120,11 +120,11 @@ class App extends Component {
           let s = sights.response.groups[0].items;
           allSights.push(s);
         });
-        this.setState(
+        /*This is being called once the promises and fetch all resolve*/ this.setState(
           {
             sights: allSights
           },
-          this.renderMap()
+          this.renderMap() /*This is being called after setState() is complete*/
         );
       });
     });
@@ -160,11 +160,19 @@ class App extends Component {
       zoom: 10
     });
     console.log(this.state);
+    /*Create an infowindow*/
+    var infoWindow = new window.google.maps.InfoWindow();
     this.state.places.map(place => {
+      /*Create a marker*/
       var marker = new window.google.maps.Marker({
         position: { lat: place.location.lat, lng: place.location.lng },
         map: map,
         title: place.title
+      });
+
+      marker.addListener("click", function() {
+        infoWindow.setContent(`Hello ${place.title}`);
+        infoWindow.open(map, marker);
       });
     });
   }
