@@ -6,7 +6,11 @@ class Content extends Component {
   render() {
     return (
       <div id="content" className="flex-container">
-        <Sidebar places={this.props.places} />
+        <Sidebar
+          places={this.props.places}
+          markers={this.props.markers}
+          mainMap={this.props.mainMap}
+        />
         <Map />
       </div>
     );
