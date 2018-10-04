@@ -33,9 +33,9 @@ class App extends Component {
         id: "nca7278"
       },
       {
-        title: "Kifune Shrine",
-        location: { lat: 35.121852, lng: 135.762899 },
-        id: "ksh5299"
+        title: "Saihō-ji",
+        location: { lat: 34.991962, lng: 135.683288 },
+        id: "sji6288"
       },
       {
         title: "Kyoto Imperial Palace",
@@ -152,12 +152,19 @@ class App extends Component {
       var marker = new window.google.maps.Marker({
         position: { lat: place.location.lat, lng: place.location.lng },
         map: map,
-        title: place.title
+        title: place.title,
+        animation: window.google.maps.Animation.DROP
       });
+
       /* Add click listener to open marker infoWindow */
       marker.addListener("click", function() {
         infoWindow.setContent(`Hello ${place.title}`);
         infoWindow.open(map, marker);
+        /* Add bounce animation to marker when clicked */
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+        setTimeout(function() {
+          marker.setAnimation(null);
+        }, 750);
       });
       listOfMarkers.push(marker);
     });
