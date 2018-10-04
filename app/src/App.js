@@ -79,7 +79,6 @@ class App extends Component {
 
   componentDidMount() {
     this.getFourquareData();
-    //this.renderMap();
   }
 
   renderMap() {
@@ -91,6 +90,7 @@ class App extends Component {
   }
 
   getFourquareData() {
+    /* Setup the parameters and endpoint */
     let endpoint = "https://api.foursquare.com/v2/venues/explore?";
     let url;
     let urls = [];
@@ -102,6 +102,7 @@ class App extends Component {
       v: 20180323
     };
 
+    /* Create a list of urls for each of the 13 places */
     this.state.places.forEach(place => {
       let lat = place.location.lat;
       let lng = place.location.lng;
@@ -110,48 +111,30 @@ class App extends Component {
       urls.push(url);
     });
 
+    /* Initialize empty array to store sub-arrays of sights near each of 13 places */
     let allSights = [];
 
-    urls = urls.slice(0, 3); //just use three responses for now (delete this line later)
+    /* Limit the urls to just 3 places to limit quota requests */
+    /* DELETE THIS LINE AFTER PROJECT IS DONE */
+    urls = urls.slice(0, 3);
 
+    /* Use Promises to fetch urls, convert to JSON, and store in allSights array */
     Promise.all(urls.map(url => fetch(url))).then(resolved => {
       Promise.all(resolved.map(res => res.json())).then(r => {
         r.forEach(sights => {
           let s = sights.response.groups[0].items;
           allSights.push(s);
         });
-        /*This is being called once the promises and fetch all resolve*/ this.setState(
+        this.setState(
+          // This is called when fetch/promises all resolve
           {
             sights: allSights
           },
-          this.renderMap() /*This is being called after setState() is complete*/
+          // This is being called when setState() is complete
+          this.renderMap()
         );
       });
     });
-
-    /* OLD CODE NOT WORKING WELL
-    this.setState({ sights: [] });
-    this.state.places.forEach(place => {
-      let lat = place.location.lat;
-      let lng = place.location.lng;
-      params.ll = lat + "," + lng;
-      url = endpoint + new URLSearchParams(params);
-      fetch(url).then(response => {
-        response
-          .json()
-          .then(jsonResp => {
-            let nearbySights = jsonResp.response.groups[0].items;
-            this.setState(currentState => {
-              // push the nearbySights for single place to array
-              currentState.sights.push(nearbySights);
-            });
-          })
-          .then(() => {
-            console.log("Hello", this.state);
-          });
-      });
-    });
-    */
   }
 
   initMap() {
@@ -160,16 +143,16 @@ class App extends Component {
       zoom: 10
     });
     console.log(this.state);
-    /*Create an infowindow*/
+    /* Create InfoWindow outside of Loop */
     var infoWindow = new window.google.maps.InfoWindow();
     this.state.places.map(place => {
-      /*Create a marker*/
+      /* Create a marker */
       var marker = new window.google.maps.Marker({
         position: { lat: place.location.lat, lng: place.location.lng },
         map: map,
         title: place.title
       });
-
+      /* Add click listener to open marker infoWindow */
       marker.addListener("click", function() {
         infoWindow.setContent(`Hello ${place.title}`);
         infoWindow.open(map, marker);
@@ -200,19 +183,3 @@ function loadScript(url) {
 }
 
 export default App;
-
-// TODO:
-/*
-  FRIDAY
-  1. Branch off into React branch...OK
-  2. Refactor code to use React components (maybe seperate files)...WORKING
-  3. Implement Google Maps map into React component (see article link)
-
-  MONDAY
-  4. Application Functionality (Maps API)
-  5. Additional Functionality (3rd Party API)
-
-  TUESDAY
-  6. Accessibility & Offline Usage & Documentation & Submit
-
-*/
