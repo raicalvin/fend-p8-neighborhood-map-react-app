@@ -10,6 +10,7 @@ class Content extends Component {
           places={this.props.places}
           markers={this.props.markers}
           mainMap={this.props.mainMap}
+          mainInfoWindow={this.props.mainInfoWindow}
         />
         <Map />
       </div>

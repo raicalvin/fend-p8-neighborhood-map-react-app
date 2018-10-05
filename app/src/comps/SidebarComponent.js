@@ -40,6 +40,15 @@ class Sidebar extends Component {
     });
   }
 
+  placeButtonClicked(placeTitle) {
+    let originalMarkers = this.props.markers;
+    let clickedMarker = originalMarkers.find(marker => {
+      return marker.title.trim() === placeTitle.trim();
+    });
+    this.props.mainInfoWindow.open(this.props.mainMap, clickedMarker);
+    this.props.mainInfoWindow.setContent("Waddupp");
+  }
+
   render() {
     /* Filter results when user searches in input field */
     let filteringResults;
@@ -73,7 +82,10 @@ class Sidebar extends Component {
           <ul>
             {filteringResults.map(place => (
               <li key={place.id}>
-                <button className="list-item flex-container-list-item">
+                <button
+                  className="list-item flex-container-list-item"
+                  onClick={e => this.placeButtonClicked(e.target.innerText)}
+                >
                   <span className="list-item-span">{place.title}</span>
                 </button>
               </li>

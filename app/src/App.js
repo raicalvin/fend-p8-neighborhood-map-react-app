@@ -75,7 +75,8 @@ class App extends Component {
     ],
     markers: [],
     sights: [],
-    mainMap: null
+    mainMap: null,
+    mainInfoWindow: null
   };
 
   componentDidMount() {
@@ -143,7 +144,6 @@ class App extends Component {
       center: { lat: 35.02107, lng: 135.75385 },
       zoom: 10
     });
-    console.log(this.state);
     /* Create InfoWindow outside of Loop */
     var infoWindow = new window.google.maps.InfoWindow();
     var listOfMarkers = []; // Empty array to hold markers
@@ -171,7 +171,8 @@ class App extends Component {
     /* Update markers in state with list of newly created markers */
     this.setState({
       markers: listOfMarkers,
-      mainMap: map
+      mainMap: map,
+      mainInfoWindow: infoWindow
     });
   }
 
@@ -183,6 +184,7 @@ class App extends Component {
           places={this.state.places}
           markers={this.state.markers}
           mainMap={this.state.mainMap}
+          mainInfoWindow={this.state.mainInfoWindow}
         />
         <Footer />
       </div>
