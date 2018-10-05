@@ -22,7 +22,7 @@ class Sidebar extends Component {
     /* Find markers to make map visible to */
     results.forEach(result => {
       originalMarkers.forEach(marker => {
-        if (result.title == marker.title) {
+        if (result.title === marker.title) {
           markersToShow.push(marker);
         }
       });
