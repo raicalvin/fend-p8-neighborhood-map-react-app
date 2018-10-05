@@ -176,11 +176,6 @@ class App extends Component {
   }
 
   populateInfoWindow(place, inWin, map, marker, near) {
-    console.log(place);
-    // console.log(inWin);
-    // console.log(map);
-    // console.log(marker);
-    // console.log(near);
     let nearbyContent = "";
     let nearbyToThisPlace = near.find(element => {
       return element.loc.trim() === place.trim();
