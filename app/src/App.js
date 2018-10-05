@@ -182,8 +182,9 @@ class App extends Component {
     });
 
     nearbyToThisPlace.near.forEach((nr, index) => {
-      nearbyContent +=
-        `<div>${index + 1}. ${nr.sight}</div>` + `<div>${nr.address}</div>`;
+      nearbyContent += `<div>${index + 1}. ${nr.sight}</div><div>${
+        nr.address
+      }</div>`;
     });
 
     /* Set the content to be placed in InfoWindow */
