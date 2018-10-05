@@ -91,13 +91,12 @@ class Sidebar extends Component {
           />
         </div>
         <div id="sidebar-list">
-          <ul role="list" tabIndex="0">
+          <ul tabIndex="0">
             {filteringResults.map(place => (
-              <li key={place.id} role="listitem">
+              <li key={place.id}>
                 <button
                   className="list-item flex-container-list-item"
                   onClick={e => this.placeButtonClicked(e.target.innerText)}
-                  role="button"
                 >
                   <span className="list-item-span">{place.title}</span>
                 </button>
