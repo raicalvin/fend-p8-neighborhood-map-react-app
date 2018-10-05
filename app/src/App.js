@@ -140,7 +140,7 @@ class App extends Component {
 
     /* Limit the urls to just 3 places to limit quota requests */
     /* DELETE THIS LINE AFTER PROJECT IS DONE */
-    urls = urls.slice(0, 3);
+    // urls = urls.slice(0, 3);
 
     /* Use Promises to fetch urls, convert to JSON, and store in allSights array */
     Promise.all(urls.map(url => fetch(url))).then(resolved => {
@@ -167,16 +167,50 @@ class App extends Component {
     });
   }
 
+  populateInfoWindow(place, inWin, map, marker, near) {
+    console.log(place);
+    console.log(inWin);
+    console.log(map);
+    console.log(marker);
+    console.log(near);
+    let nearbyContent = "";
+    let nearbyToThisPlace = near.find(element => {
+      return element.loc.trim() === place.title.trim();
+    });
+
+    nearbyToThisPlace.near.forEach((nr, index) => {
+      nearbyContent +=
+        `<div>${index + 1}. ${nr.sight}</div>` + `<div>${nr.address}</div>`;
+    });
+
+    /* Set the content to be placed in InfoWindow */
+    let content =
+      `<div id="info-window-title"><b>${place.title}</b></div>` +
+      `<div id="info-window-sub-heading">Places Nearby:</div>` +
+      nearbyContent +
+      `<div id="info-window-footer"><i>Places Nearby</i> provided by FourSquare API</div>`;
+
+    inWin.setContent(content);
+    inWin.open(map, marker);
+  }
+
   initMap() {
+    /* Create new Google Map */
     let map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 35.02107, lng: 135.75385 },
       zoom: 10
     });
+
     /* Create bounds object to hold bounds of map as markers are created */
     let bounds = new window.google.maps.LatLngBounds();
+
     /* Create InfoWindow outside of Loop */
     var infoWindow = new window.google.maps.InfoWindow();
     var listOfMarkers = []; // Empty array to hold markers
+
+    let nearbyLocations = this.state.nearby;
+
+    /* Loop through each place and create marker with clickListener */
     this.state.places.map(place => {
       /* Create a marker */
       var marker = new window.google.maps.Marker({
@@ -186,19 +220,25 @@ class App extends Component {
         animation: window.google.maps.Animation.DROP
       });
 
+      // Pass the populateInfoWindow to the marker object, but don't invoke right now
+      marker.popInfoWin = this.populateInfoWindow;
+
       /* Add click listener to open marker infoWindow */
       marker.addListener("click", function() {
-        infoWindow.setContent(`Hello ${place.title}`);
-        infoWindow.open(map, marker);
+        // this.populateInfoWindow(infoWindow, marker, place);
+        this.popInfoWin(place, infoWindow, map, this, nearbyLocations);
         /* Add bounce animation to marker when clicked */
         marker.setAnimation(window.google.maps.Animation.BOUNCE);
         setTimeout(function() {
           marker.setAnimation(null);
         }, 750);
       });
+
       bounds.extend(marker.position); // Extend bounds to capture latest marker
+
       listOfMarkers.push(marker);
     });
+
     /* Update markers in state with list of newly created markers */
     this.setState({
       markers: listOfMarkers,
@@ -218,6 +258,7 @@ class App extends Component {
           markers={this.state.markers}
           mainMap={this.state.mainMap}
           mainInfoWindow={this.state.mainInfoWindow}
+          near={this.state.nearby}
         />
         <Footer />
       </div>

@@ -114,6 +114,17 @@ ul {
   height: 100%;
 }
 
+/* ========== InfoWindow ========== */
+#info-window-title {
+  margin-bottom: 8px;
+}
+#info-window-sub-heading {
+  margin-bottom: 4px;
+}
+#info-window-footer {
+  margin-top: 8px;
+}
+
 /* ========== Footer ========== */
 #footer {
   position: fixed;
