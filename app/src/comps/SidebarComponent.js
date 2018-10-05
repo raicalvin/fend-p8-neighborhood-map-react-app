@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Input from "./InputComponent";
-import ListItem from "./ListItemComponent";
+
 import escapeRegExp from "escape-string-regexp";
 import sortBy from "sort-by";
 
