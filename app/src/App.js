@@ -144,6 +144,8 @@ class App extends Component {
       center: { lat: 35.02107, lng: 135.75385 },
       zoom: 10
     });
+    /* Create bounds object to hold bounds of map as markers are created */
+    let bounds = new window.google.maps.LatLngBounds();
     /* Create InfoWindow outside of Loop */
     var infoWindow = new window.google.maps.InfoWindow();
     var listOfMarkers = []; // Empty array to hold markers
@@ -166,6 +168,7 @@ class App extends Component {
           marker.setAnimation(null);
         }, 750);
       });
+      bounds.extend(marker.position); // Extend bounds to capture latest marker
       listOfMarkers.push(marker);
     });
     /* Update markers in state with list of newly created markers */
@@ -174,6 +177,8 @@ class App extends Component {
       mainMap: map,
       mainInfoWindow: infoWindow
     });
+    /* Make the map fit itself to the bounds of the furthest markers */
+    map.fitBounds(bounds);
   }
 
   render() {
