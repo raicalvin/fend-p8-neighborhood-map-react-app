@@ -12,6 +12,7 @@ class Content extends Component {
           mainMap={this.props.mainMap}
           mainInfoWindow={this.props.mainInfoWindow}
           near={this.props.near}
+          popInfoWin={this.props.popInfoWin}
         />
         <Map />
       </div>

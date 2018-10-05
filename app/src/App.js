@@ -138,10 +138,6 @@ class App extends Component {
     /* Initialize empty array to store sub-arrays of sights near each of 13 places */
     let allSights = [];
 
-    /* Limit the urls to just 3 places to limit quota requests */
-    /* DELETE THIS LINE AFTER PROJECT IS DONE */
-    // urls = urls.slice(0, 3);
-
     /* Use Promises to fetch urls, convert to JSON, and store in allSights array */
     Promise.all(urls.map(url => fetch(url))).then(resolved => {
       Promise.all(resolved.map(res => res.json())).then(r => {
@@ -169,13 +165,13 @@ class App extends Component {
 
   populateInfoWindow(place, inWin, map, marker, near) {
     console.log(place);
-    console.log(inWin);
-    console.log(map);
-    console.log(marker);
-    console.log(near);
+    // console.log(inWin);
+    // console.log(map);
+    // console.log(marker);
+    // console.log(near);
     let nearbyContent = "";
     let nearbyToThisPlace = near.find(element => {
-      return element.loc.trim() === place.title.trim();
+      return element.loc.trim() === place.trim();
     });
 
     nearbyToThisPlace.near.forEach((nr, index) => {
@@ -185,7 +181,7 @@ class App extends Component {
 
     /* Set the content to be placed in InfoWindow */
     let content =
-      `<div id="info-window-title"><b>${place.title}</b></div>` +
+      `<div id="info-window-title"><b>${place}</b></div>` +
       `<div id="info-window-sub-heading">Places Nearby:</div>` +
       nearbyContent +
       `<div id="info-window-footer"><i>Places Nearby</i> provided by FourSquare API</div>`;
@@ -226,7 +222,7 @@ class App extends Component {
       /* Add click listener to open marker infoWindow */
       marker.addListener("click", function() {
         // this.populateInfoWindow(infoWindow, marker, place);
-        this.popInfoWin(place, infoWindow, map, this, nearbyLocations);
+        this.popInfoWin(place.title, infoWindow, map, this, nearbyLocations);
         /* Add bounce animation to marker when clicked */
         marker.setAnimation(window.google.maps.Animation.BOUNCE);
         setTimeout(function() {
@@ -259,6 +255,7 @@ class App extends Component {
           mainMap={this.state.mainMap}
           mainInfoWindow={this.state.mainInfoWindow}
           near={this.state.nearby}
+          popInfoWin={this.populateInfoWindow.bind(this)}
         />
         <Footer />
       </div>
