@@ -76,7 +76,8 @@ class App extends Component {
     markers: [],
     sights: [],
     mainMap: null,
-    mainInfoWindow: null
+    mainInfoWindow: null,
+    nearby: []
   };
 
   componentDidMount() {
@@ -89,6 +90,27 @@ class App extends Component {
       `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`
     );
     window.initMap = this.initMap.bind(this);
+  }
+
+  organizeFoursquareData(data) {
+    let organizedData = [];
+    /* Grab first three nearby sights for each location, if exists */
+    data.forEach(dt => {
+      let obj = {};
+      let nearby = [];
+      if (dt.s.length >= 3) {
+        obj.loc = dt.loc;
+        for (let i = 0; i < 3; i++) {
+          nearby.push({
+            sight: dt.s[i].venue.name,
+            address: dt.s[i].venue.location.address
+          });
+        }
+        obj.near = nearby;
+      }
+      organizedData.push(obj);
+    });
+    this.setState({ nearby: organizedData });
   }
 
   getFourquareData() {
@@ -123,16 +145,22 @@ class App extends Component {
     /* Use Promises to fetch urls, convert to JSON, and store in allSights array */
     Promise.all(urls.map(url => fetch(url))).then(resolved => {
       Promise.all(resolved.map(res => res.json())).then(r => {
-        r.forEach(sights => {
+        r.forEach((sights, index) => {
           let s = sights.response.groups[0].items;
-          allSights.push(s);
+          /* Create object here with name and the array and push */
+          let obj = {
+            loc: this.state.places[index].title,
+            s: s
+          };
+          allSights.push(obj);
         });
+        this.organizeFoursquareData(allSights);
         this.setState(
           // This is called when fetch/promises all resolve
           {
             sights: allSights
           },
-          // This is being called when setState() is complete
+          // Callback when setState() is complete
           this.renderMap()
         );
       });
