@@ -80,7 +80,7 @@ class Sidebar extends Component {
 
     /* Returned UI from the render() method */
     return (
-      <div id="sidebar">
+      <section id="sidebar">
         <div id="input-field" className="flex-container flex-container-center">
           <input
             type="text"
@@ -89,17 +89,16 @@ class Sidebar extends Component {
             className="input-field-filter"
             value={this.state.query}
             onChange={e => this.updateQuery(e.target.value)}
-            tabIndex="3"
           />
         </div>
         <div id="sidebar-list">
-          <ul>
+          <ul role="list" tabIndex="0">
             {filteringResults.map(place => (
-              <li key={place.id}>
+              <li key={place.id} role="listitem">
                 <button
                   className="list-item flex-container-list-item"
                   onClick={e => this.placeButtonClicked(e.target.innerText)}
-                  tabIndex="4"
+                  role="button"
                 >
                   <span className="list-item-span">{place.title}</span>
                 </button>
@@ -107,7 +106,7 @@ class Sidebar extends Component {
             ))}
           </ul>
         </div>
-      </div>
+      </section>
     );
   }
 }

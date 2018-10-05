@@ -3,13 +3,13 @@ import React, { Component } from "react";
 class Footer extends Component {
   render() {
     return (
-      <div
+      <footer
+        tabIndex="0"
         id="footer"
         className="flex-container flex-container-center"
-        tabIndex="6"
       >
-        <span>Made with LOVE. And React. By Calvin.</span>
-      </div>
+        <span tabIndex="0">Made with LOVE. And React. By Calvin.</span>
+      </footer>
     );
   }
 }

@@ -3,9 +3,9 @@ import React, { Component } from "react";
 class Map extends Component {
   render() {
     return (
-      <div className="main-map">
-        <div id="map" tabIndex="5" />
-      </div>
+      <section className="main-map">
+        <div id="map" role="application" />
+      </section>
     );
   }
 }

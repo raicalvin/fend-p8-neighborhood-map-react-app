@@ -5,7 +5,7 @@ import Map from "./MapComponent.js";
 class Content extends Component {
   render() {
     return (
-      <div tabIndex="2" id="content" className="flex-container">
+      <main id="content" className="flex-container">
         <Sidebar
           places={this.props.places}
           markers={this.props.markers}
@@ -15,7 +15,7 @@ class Content extends Component {
           popInfoWin={this.props.popInfoWin}
         />
         <Map />
-      </div>
+      </main>
     );
   }
 }
