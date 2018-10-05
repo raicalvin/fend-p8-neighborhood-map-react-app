@@ -4,7 +4,7 @@ class Header extends Component {
   render() {
     return (
       <div id="header" className="flex-container flex-container-center">
-        <span>KYOTO EXPLORE</span>
+        <span tabIndex="1">KYOTO EXPLORE</span>
       </div>
     );
   }

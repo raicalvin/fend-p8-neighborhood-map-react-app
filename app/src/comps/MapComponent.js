@@ -4,7 +4,7 @@ class Map extends Component {
   render() {
     return (
       <div className="main-map">
-        <div id="map" />
+        <div id="map" tabIndex="5" />
       </div>
     );
   }

@@ -89,6 +89,7 @@ class Sidebar extends Component {
             className="input-field-filter"
             value={this.state.query}
             onChange={e => this.updateQuery(e.target.value)}
+            tabIndex="3"
           />
         </div>
         <div id="sidebar-list">
@@ -98,6 +99,7 @@ class Sidebar extends Component {
                 <button
                   className="list-item flex-container-list-item"
                   onClick={e => this.placeButtonClicked(e.target.innerText)}
+                  tabIndex="4"
                 >
                   <span className="list-item-span">{place.title}</span>
                 </button>
