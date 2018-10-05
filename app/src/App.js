@@ -139,28 +139,40 @@ class App extends Component {
     let allSights = [];
 
     /* Use Promises to fetch urls, convert to JSON, and store in allSights array */
-    Promise.all(urls.map(url => fetch(url))).then(resolved => {
-      Promise.all(resolved.map(res => res.json())).then(r => {
-        r.forEach((sights, index) => {
-          let s = sights.response.groups[0].items;
-          /* Create object here with name and the array and push */
-          let obj = {
-            loc: this.state.places[index].title,
-            s: s
-          };
-          allSights.push(obj);
-        });
-        this.organizeFoursquareData(allSights);
-        this.setState(
-          // This is called when fetch/promises all resolve
-          {
-            sights: allSights
-          },
-          // Callback when setState() is complete
-          this.renderMap()
+    Promise.all(urls.map(url => fetch(url)))
+      .then(resolved => {
+        Promise.all(resolved.map(res => res.json()))
+          .then(r => {
+            r.forEach((sights, index) => {
+              let s = sights.response.groups[0].items;
+              /* Create object here with name and the array and push */
+              let obj = {
+                loc: this.state.places[index].title,
+                s: s
+              };
+              allSights.push(obj);
+            });
+            this.organizeFoursquareData(allSights);
+            this.setState(
+              // This is called when fetch/promises all resolve
+              {
+                sights: allSights
+              },
+              // Callback when setState() is complete
+              this.renderMap()
+            );
+          })
+          .catch(err => {
+            console.log(
+              `An error occured while parsing the FourSquare API: ${err}`
+            );
+          });
+      })
+      .catch(err => {
+        console.log(
+          `An error occured while fetching the FourSquare data: ${err}`
         );
       });
-    });
   }
 
   populateInfoWindow(place, inWin, map, marker, near) {
