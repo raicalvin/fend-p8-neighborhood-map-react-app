@@ -215,7 +215,7 @@ class App extends Component {
     let nearbyLocations = this.state.nearby;
 
     /* Loop through each place and create marker with clickListener */
-    this.state.places.map(place => {
+    this.state.places.forEach(place => {
       /* Create a marker */
       var marker = new window.google.maps.Marker({
         position: { lat: place.location.lat, lng: place.location.lng },
