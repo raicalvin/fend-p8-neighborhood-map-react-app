@@ -47,6 +47,11 @@ class Sidebar extends Component {
     });
     this.props.mainInfoWindow.open(this.props.mainMap, clickedMarker);
     this.props.mainInfoWindow.setContent("Waddupp");
+    /* Add bounce animation to marker when clicked */
+    clickedMarker.setAnimation(window.google.maps.Animation.BOUNCE);
+    setTimeout(function() {
+      clickedMarker.setAnimation(null);
+    }, 750);
   }
 
   render() {
