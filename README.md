@@ -23,7 +23,7 @@ Include information about the concepts, technologies, packages, and frameworks u
 
 Kyoto Explore utilizes a responsive UI that is optimized for mobile, tablet, and desktop screen sizes. The red color scheme provides a nice contrast to both dark and light elements and text within the app. The list view is scrollable, searchable, and filterable to allow users to filter results to specific queries. Finally, focus on list items and other elements in the application are present to allow for accessibility usage.
 
-![](http://placekitten.com/300/200) ![](http://placekitten.com/300/200)
+![](https://github.com/raicalvin/pictures/blob/master/pix-fend-p8-neighborhood-map-react-app/pic1.png) ![](https://github.com/raicalvin/pictures/blob/master/pix-fend-p8-neighborhood-map-react-app/pic2.png)
 
 ## Getting Started
 
