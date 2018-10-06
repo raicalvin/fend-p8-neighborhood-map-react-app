@@ -1,176 +1,68 @@
-# React App: Neighborhood Map
-
-![](http://placekitten.com/200/200) <-- You should include your projects LOGO here.
-
-Project title should be formatted as one of the following:
-
-- Android App: App Name
-- iOS App: App Name
-- Website: Website Name
-- VR Project: Project Name
-- AR Project: Project Name
+# React App: Kyoto Explore Neighborhood Map
 
 ## Project Information
 
 ### About
 
-A short description of **what** the project is about. A few sentences at max. What the project does, who the project was for, which educational program it was for, which scholarship it was for, which group, etc...
-
-- Udacity Android Basics Nanodegree
-- Grow With Google Developer Scholarship
-- Grow With Google Developer Challenge
+This project is a ReactJS single-page application that utilizes the Google Maps API and the Foursquare API to allow the user to explore popular sights in Kyoto, Japan and also receive additional information about nearby locations. This was my final project for my Front-End Developer Nanodegree from Udacity.
 
 ### Motivation
 
-A short description on **why** this project exists, initial ideas for coming up with the project, and what the purpose and inspiration goal was for this project.
+I have always been very interested in Japanese culture and after having gone there for the first time, I decided to center this project around some of the locations I visited and other locations where I would love to explore in the future. All of these locations are in the city of Kyoto within the Kyoto prefecture in Japan.
 
 ### Concepts
 
 Include information about the concepts, technologies, packages, and frameworks used to develop the project
 
-- Gravit Designer was used for initial mockup and prototype ...
-- Fragments were used for ...
-- Vectr was used for ...
+- ReactJS was used to develop the responsive UI and to manage the list of locations in Kyoto
+- The Google Maps API was used to display a map, markers, and InfoWindows for the set locations
+- The FourSquare API was used to retrieve nearby information for each location
+- npm was used to install all dependencies and modules needed for the project
 
 ## User Interface
 
-A short description about the UI thought process, decisions, and implementations. Include pictures here if necessary. Images should not be larger than 300x300. Reformat if necessary.
+Kyoto Explore utilizes a responsive UI that is optimized for mobile, tablet, and desktop screen sizes. The red color scheme provides a nice contrast to both dark and light elements and text within the app. The list view is scrollable, searchable, and filterable to allow users to filter results to specific queries. Finally, focus on list items and other elements in the application are present to allow for accessibility usage.
 
 ![](http://placekitten.com/300/200) ![](http://placekitten.com/300/200)
 
-## User Experience
-
-A short description on the thought process for creating an experience with ease-of-use kept in mind.
-
 ## Getting Started
 
-This section should briefly describe how a user can download and/or start implementing this project/library/code on their local machine. Provide a brief description of the overview of the process, download necessary, and how the installation will proceed.
-
-### Prerequisites
-
-Include any prerequisites here.
+This section provides information about installing and running the Kyoto Explore application to local hosts.
 
 ### Downloading
 
-Give code samples for downloading the project:
+You may download the project files from the repository using the following git command:
 
 ```
-Example for download
-```
-
-### Installing
-
-Give code samples for installing the project. Include any libraries or dependencies that need to also be installed.
-
-```
-Example for install
+git clone "https://github.com/raicalvin/fend-p8-neighborhood-map-react-app.git"
 ```
 
 ### Running
 
-Give code samples for running the project:
+You may run the application on a localHost by CD-ing into the directory, installing the dependencies, and then running the application using the following commands:
 
 ```
-Example for running
+npm install
+npm start
 ```
 
-### Testing
-
-If you are using a testing framework (i.e. Jasmine, Mocha, etc...), describe the various tests that are being performed on the application here.
-
-1. Test 1 Description
-2. Test 2 Description
-3. Test 3 Description
-
-## Code Examples
-
-In this section, provide short and concise coding samples so that users can easily determine **what** how your code can help them solve their problems.
-
-```java
-public void codeSample1(int input) {
-    test = testOriginal - input;
-}
-```
+The application should begin running automatically on localHost:3000. If the application does not open, open a blank browser tab and navigate to localHost:3000.
 
 ## Issues
 
-This section should list out any known issues that are currently present in the project. Include a brief description and introduction here. List the issues down below in a bulleted list with any necessary code/examples.
+- Issue 1 - Since this project is utilizing the free Google Maps API service, quota requests are limited and may not display detailed information or present other functionality.
 
-- Issue 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas sapien ac porta posuere. Curabitur viverra `code() - testIntegral` feugiat. Duis dapibus, erat sed dignissim dictum, eros eros faucibus turpis, sed tempus nibh tellus varius lectus.
-
-- Issue 2 - Lorem `ipsum() -> v.ViewModel` dolor sit amet, consectetur adipiscing elit. Quisque egestas sapien ac porta posuere. Curabitur viverra tellus nec lacinia feugiat. Duis dapibus, erat sed `var s = 'ipsum something'` dictum, eros eros faucibus turpis, sed tempus nibh tellus varius lectus.
-
-## FAQ's
-
-Please find below a list of frequently asked questions. For further explanation or clarity, please contact me via [email](mailto:raicalvin@gmail.com).
-
-1. Here is a question that is a question but isn't?
-
-   > This is an example answer. Always remember, the answer to anything in life is the answer itself. Right? I guess that was pretty vague. I hope I spelled vague correctly. You can find the method `answerMeNow()` here in this situation.
-
-2. Here is a question that is a question but isn't?
-   > This is an example answer. Always remember, the answer to anything in life is the answer itself. Right? I guess that was pretty vague. I hope I spelled vague correctly. You can find the method `answerMeNow()` here in this situation.
+- Issue 2 - The Foursquare API is limited to 99,500 requests per day and will not fetch new data if this quota is reached. The quota is reset every 24 hours.
 
 ## Built With
 
-- [JAMA](https://math.nist.gov/javanumerics/jama/) - The Java matrix library used
-- [GraphView](http://www.android-graphview.org/) - GraphView library to depict plots
+- [ReactJS](https://reactjs.org/) - Framework used to develop the UI
+- [Google Maps API](https://cloud.google.com/maps-platform/) - API used to provide the map, markers, and information windows
+- [Foursquare API](https://developer.foursquare.com/) - API used to retrieve local information for each location
 
 ## Authors
 
 - Calvin S Rai - _Designer & Developer_ - [GitHub](https://github.com/raicalvin)
-
-See also a list of [contributors](https://github.com/raicalvin) who contributed, supported, and aided in this projects development.
-
-## Resources
-
-This section should provide information about the images, video, and media files used in this project.
-
-## Reference
-
-Provide a list of links to appropriate API documentation used in the project.
-
-- API Library 1 - _Description of documentation_ - [Documentation](https://github.com/raicalvin)
-- API Library 2 - _Description of documentation_ - [Documentation](https://github.com/raicalvin)
-- API Library 3 - _Description of documentation_ - [Documentation](https://github.com/raicalvin)
-
-## Release History
-
-- 1.0.0
-  - Initial release of project
-- 0.3.0
-  - CHANGE: Updated documentation for methods A & B (initial rendering changed)
-- 0.2.0
-  - CHANGE: Remove `tailUpDown()`
-  - ADD: Add `hogwartsCastle()`
-- 0.1.1
-  - FIX: Crash when calling `takeThat()` after button press(Thank you to: @NameOfPersonWhoDiscoveredCrash!)
-- 0.1.0
-  - Initial beta release for the project
-  - ADD: Added method `takeThat()` to provide...
-- 0.0.1
-  - Work begun on project
-
-## Planned Updates
-
-- 1.1.0
-  - Some moderate-sized update
-- 1.0.2
-  - Some other update
-- 1.0.1
-  - Some update
-
-## License
-
-This section should provide a short snippet about the license information (MIT, Apache, etc...) if applicable.
-
-## Acknowledgments
-
-Provide a list of acknowledgements if necessary.
-
-- This person - _For taking the time to blah blah blah_
-- That person - _For not knowing what in the world they were doing_
-- And this person - _Just because_
 
 ## Contact
 
